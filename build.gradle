@@ -23,6 +23,7 @@ gretty {
   port = 8050
   contextPath = 'devWebPortalGWithConfig'
   servletContainer = 'tomcat8'
+  contextConfigFile = 'context.xml'
   debugPort = 5005      // default
   debugSuspend = true
 }
@@ -42,20 +43,49 @@ repositories{
 
 dependencies{
   
+  //spring core
   compile "org.springframework:spring-context:4.2.1.RELEASE"
-  compile "org.springframework:spring-webmvc:4.2.1.RELEASE"
   compile "org.springframework:spring-context-support:4.2.1.RELEASE"
+  
+  compile "org.springframework:spring-orm:4.2.1.RELEASE"
+  //spring MVC
+  compile "org.springframework:spring-webmvc:4.2.1.RELEASE"
+  
+  //For JPA 
   compile "org.hibernate:hibernate-entitymanager:4.3.8.Final"
-  compile 'javax.servlet:jstl:1.2'
+  
+  //for jstl 
+  compile "javax.servlet:jstl:1.2"
   compile "org.hibernate:hibernate-validator:5.1.3.Final"
   
+  compile("org.hibernate:hibernate-entitymanager:4.3.8.Final") {
+		exclude group: "org.jboss.spec.javax.transaction"
+	}
+	gretty 'org.apache.tomcat:tomcat-jdbc:8.0.26'
+	
+	compile 'org.apache.tomcat:tomcat-jdbc:8.0.26'
+
+
+	//spring security
+    compile "org.springframework.security:spring-security-config:4.0.1.RELEASE"
+	compile "org.springframework.security:spring-security-web:4.0.1.RELEASE"
+	compile "org.springframework.security:spring-security-acl:4.0.1.RELEASE"
+	
+		
+	compile "org.apache.commons:commons-lang3:3.3.2"
+		
+    providedCompile "com.atomikos:transactions:3.9.3"
+	providedCompile "javax.transaction:javax.transaction-api:1.2"
+	providedCompile "com.atomikos:transactions-hibernate3:3.9.3" 
+	compile "commons-pool:commons-pool:1.6"
+	providedCompile "org.slf4j:jcl-over-slf4j:1.7.7"
+    providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+ 
   
-  providedCompile "javax.servlet:javax.servlet-api:3.1.0"
-    
   compile "com.fasterxml.jackson.core:jackson-databind:2.5.2"
-	compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.5.2"
-	compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.5.2"
-	compile "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.2"
+  compile "com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.5.2"
+  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.5.2"
+  compile "com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.5.2"
   }
 
 
