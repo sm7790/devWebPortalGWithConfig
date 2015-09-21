@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context sessionCookieName="DEV_WEB_SESSION_SID" reloadable="true">
+
+<Resource 
+       name="jdbc/devcore"
+       auth="Container"
+       factory="oracle.ucp.jdbc.PoolXADataSourceImpl"
+       type="oracle.ucp.jdbc.PoolXADataSource"
+       description="Portal XA Connection"
+       connectionFactoryClassName="oracle.jdbc.xa.client.OracleXADataSource"
+       minPoolSize="2"
+       maxPoolSize="5"
+       inactiveConnectionTimeout="20"
+       user="dev_core"
+       password="dev_core"
+       url="jdbc:oracle:thin:@localhost:1521:xe"
+       connectionPoolName="devcore"
+       validateConnectionOnBorrow="true"
+       sqlForValidateConnection="select 1 from DUAL"
+       driverType="thin"/>
+
+</Context>
